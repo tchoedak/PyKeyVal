@@ -4,7 +4,7 @@ Implements a KeyVal Store where the backend is a python dictionary
 
 
 class DictKeyVal(object):
-    def __init__(self, **options):
+    def __init__(self, *args, **options):
         self.store = dict()
         self.options = options
 
@@ -19,3 +19,4 @@ class DictKeyVal(object):
 
     def clear(self):
         self.store = dict()
+        return True
