@@ -99,3 +99,4 @@ class SnowKeyVal(object):
     def clear(self):
         self.session.query(self.KeyVal).delete()
         self.session.commit()
+        return True

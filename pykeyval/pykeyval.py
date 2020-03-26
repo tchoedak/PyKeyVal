@@ -44,4 +44,4 @@ class PyKeyVal(object):
         return self.store.delete(key)
 
     def clear(self):
-        self.store.clear()
+        return self.store.clear()
