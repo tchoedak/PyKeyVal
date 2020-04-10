@@ -18,39 +18,21 @@ def generate_keyval_model(table, tablename):
 
 
 class SnowKeyVal(object):
-    def __init__(self, url, name, namespace=None, **options):
-        self.engine = create_engine(url)
+    def __init__(self, url='', name=None, **options):
+        self._engine = create_engine(url)
         self._connection = None
         self._session = None
-        self.meta = MetaData(self.engine)
-        self.name = name
-        self.namespace = namespace
-        self.tablename = self.get_tablename(name, namespace)
+        metadata = MetaData(self._engine)
+        namespace = options.get('namespace')
+        self.tablename = '_'.join(filter(None, [name, namespace]))
         self.table = Table(
             self.tablename,
-            self.meta,
+            metadata,
             Column('key', String, primary_key=True),
             Column('val', String),
         )
         self.table.create(checkfirst=True)
         self.KeyVal = generate_keyval_model(self.table, self.tablename)
-        self.local_cache = {}
-
-    def get_tablename(self, name, namespace=None):
-        tablename = f'{name}'
-        if namespace:
-            tablename += f'_{namespace}'
-        return tablename
-
-    def create_table(self, tablename):
-        stmt = f'''
-		CREATE TABLE IF NOT EXISTS {tablename}
-		(
-		key STRING,
-		val VARIANT
-		)
-		'''
-        self.connection.execute(stmt)
 
     @property
     def session(self):
@@ -58,7 +40,7 @@ class SnowKeyVal(object):
             return self._session
         else:
             Session = sessionmaker()
-            Session.configure(bind=self.engine)
+            Session.configure(bind=self._engine)
             self._session = Session()
             return self._session
 
@@ -67,7 +49,7 @@ class SnowKeyVal(object):
         if self._connection:
             return self._connection
         else:
-            self._connection = self.engine.connect()
+            self._connection = self._engine.connect()
             return self._connection
 
     def set(self, key, val):
