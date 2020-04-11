@@ -2,15 +2,17 @@
 Implements a KeyVal Store where a local file is the backend
 '''
 import json
+import os
 
 
 class FileKeyVal(object):
     def __init__(self, name, **options):
         self.options = options
         self.filename = f'.pykeyval_{name}'
+        self.path = options.get('path') or self.filename
 
     def _read(self):
-        with open(self.filename, 'r') as f:
+        with open(self.path, 'r') as f:
             data = f.read()
             if data:
                 return json.loads(data)
@@ -18,15 +20,19 @@ class FileKeyVal(object):
                 return dict()
 
     def _write(self, data):
-        with open(self.filename, 'w') as f:
+        with open(self.path, 'w') as f:
             f.write(json.dumps(data))
 
     def get(self, key):
-        data = json.loads(self._read())
+        data = self._read()
         return data.get(key)
 
     def set(self, key, val):
-        data = self._read()
+        if os.path.isfile(self.path):
+            data = self._read()
+        else:
+            data = dict()
+
         data[key] = val
         self._write(data)
         return True
@@ -40,5 +46,5 @@ class FileKeyVal(object):
         return False
 
     def clear(self):
-        open(self.filename, 'w').close()
+        open(self.path, 'w').close()
         return True
