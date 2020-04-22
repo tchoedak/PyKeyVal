@@ -3,12 +3,17 @@ from .serializers import JsonSerializer
 
 
 class PyKeyVal(object):
-    def __init__(self, url='', name='pykeyval', **options):
+    def __init__(self, url='', name=None, **options):
         self.url = url
         self.name = name
         self.options = options
         self.serializer = options.get('serializer') or JsonSerializer
-        self.stores = {'snowflake': SnowKeyVal, 'dict': DictKeyVal, 'file': FileKeyVal}
+        self.stores = {
+            'snowflake': SnowKeyVal,
+            #'dict': DictKeyVal,
+            'file': FileKeyVal,
+            'sqlite': SQLiteKeyVal,
+        }
         self.store = self._default_store(url, options)(url=url, name=name, **options)
 
     def _default_store(self, url, options):
