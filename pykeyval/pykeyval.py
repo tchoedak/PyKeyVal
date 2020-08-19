@@ -1,5 +1,11 @@
 from sqlalchemy.engine.url import make_url
 from .serializers import JsonSerializer
+from .snow_keyval import SnowKeyVal
+from .dict_keyval import DictKeyVal
+from .file_keyval import FileKeyVal
+from .redis_keyval import RedisKeyVal
+from .sqlite_keyval import SQLiteKeyVal
+
 
 
 class PyKeyVal(object):
@@ -10,9 +16,10 @@ class PyKeyVal(object):
         self.serializer = options.get('serializer') or JsonSerializer
         self.stores = {
             'snowflake': SnowKeyVal,
-            #'dict': DictKeyVal,
+            'dict': DictKeyVal,
             'file': FileKeyVal,
             'sqlite': SQLiteKeyVal,
+            'redis': RedisKeyVal,
         }
         self.store = self._default_store(url, options)(url=url, name=name, **options)
 
