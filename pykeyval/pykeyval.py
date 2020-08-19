@@ -48,10 +48,18 @@ class PyKeyVal(object):
         return True
 
     def get(self, key):
-        return self._deserialize(self.store.get(key))
+        val = self.store.get(key)
+        if val:
+            return self._deserialize(val)
 
     def delete(self, key):
+        '''
+        Returns True if the key existed, False if not.
+        '''
         return self.store.delete(key)
 
     def clear(self):
+        '''
+        Delete all entries in the current namespace
+        '''
         return self.store.clear()
