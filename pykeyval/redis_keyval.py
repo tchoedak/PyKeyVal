@@ -22,7 +22,7 @@ class RedisKeyVal(object):
 
     def get(self, key):
         val = self.redis.get(key)
-        if result:
+        if val:
             val = val.decode('utf-8')
         return val
 
