@@ -67,7 +67,11 @@ class SQLiteKeyVal(object):
         return val
 
     def get(self, key):
-        return self._get(key).first().val
+        row = self._get(key).first()
+        if row:
+            return self._get(key).first().val
+        else:
+            return row
 
     def delete(self, key):
         val = self._get(key)
