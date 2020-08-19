@@ -15,7 +15,10 @@ class DictKeyVal(object):
         self.store[key] = val
 
     def delete(self, key):
-        del self.store[key]
+        key_exists = self.get(key) is not None
+        if key_exists:
+            del self.store[key]
+        return key_exists
 
     def clear(self):
         self.store = dict()
