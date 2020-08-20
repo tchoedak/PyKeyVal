@@ -15,6 +15,7 @@ setup(
     description='',
     author='tchoedak@gmail.com',
     install_requires=requirements,
+    setup_requires=['pytest-runner'],
     tests_require=['pytest'],
-    test_suite="tests",
+    test_suite="test",
 )
