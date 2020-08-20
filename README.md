@@ -1,3 +1,3 @@
 # PyKeyVal
 
-[![CircleCI](https://circleci.com/gh/tchoedak/PyKeyVal.svg?style=shield)]
+![CircleCI](https://circleci.com/gh/tchoedak/PyKeyVal.svg?style=shield)
