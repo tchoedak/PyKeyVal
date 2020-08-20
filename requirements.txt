@@ -1,0 +1,3 @@
+redis>=3.3.11
+SQLAlchemy>=1.3.3
+snowflake-sqlalchemy>=1.1.16
