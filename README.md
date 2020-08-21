@@ -8,9 +8,11 @@ PyKeyVal is a key-value store that you can pack in a bag and take with you.
 # Installation
 
 To install PyKeyVal, simply:
+
 `pip install pykeyval`
 
 or from source:
+
 `python setup.py install`
 
 # Getting Started
@@ -58,7 +60,7 @@ PyKeyVal allows you to setup namespaces for database backends to prevent key col
 
 # Serializers
 
-PyKeyVal uses python's builtin `json` lib to perform data serialization across multiple backends for data consistency.
+PyKeyVal uses python's builtin `json` library to perform data serialization across multiple backends for data consistency.
 
 You can hook up your own serializer by passing in a serializer class that implements `serialize` and `deserialize`:
 ```python
@@ -66,7 +68,7 @@ class PickleSerializer:
     def serialize(data):
         pickle.dumps(data)
     def deserialize(data):
-        pickel.loads(data)
+        pickle.loads(data)
 
 kv = PyKeyVal(serializer=PickleSerializer)
 ```
