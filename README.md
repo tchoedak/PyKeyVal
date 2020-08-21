@@ -46,11 +46,11 @@ PyKeyVal supports the following backends:
 
 | Database   |  Interface  | Required Arguments | Options   |
 |------------|:-----------:|--------------------|-----------|
-| Memory     |[DictKeyVal](pykeyval/dict_keyval)             |                    |           |
-| File       |[FileKeyVal](pykeyval/file_keyval)             | name               | path      |
-| Redis      |[RedisKeyVal](pykeyval/redis_keyval)             | url, name          | namespace |
-| Snowflake  |[SnowKeyVal](pykeyval/snow_keyval)             | url, name          | namespace |
-| SQLite     |[SQLiteKeyVal](pykeyval/sqlite_keyval)             | url, name          | namespace |
+| Memory     |[DictKeyVal](pykeyval/dict_keyval.py)             |                    |           |
+| File       |[FileKeyVal](pykeyval/file_keyval.py)             | name               | path      |
+| Redis      |[RedisKeyVal](pykeyval/redis_keyval.py)             | url, name          | namespace |
+| Snowflake  |[SnowKeyVal](pykeyval/snow_keyval.py)             | url, name          | namespace |
+| SQLite     |[SQLiteKeyVal](pykeyval/sqlite_keyval.py)             | url, name          | namespace |
 | PostgreSQL | Coming soon |                    |           |
 | MySQL      | Coming soon |                    |           |
 
