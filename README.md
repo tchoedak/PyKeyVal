@@ -1,5 +1,5 @@
 # PyKeyVal
-
+> Heavily inspired by [`keyv`](https://github.com/lukechilds/keyv)
 ![CircleCI](https://circleci.com/gh/tchoedak/PyKeyVal.svg?style=shield)
 
 PyKeyVal is a key-value store that you can pack in a bag and take with you.
